@@ -8,5 +8,9 @@ module.exports = {
   root: true,
   parserOptions: {
     project: './tsconfig.json'
-  }
+  },
+  rules: {
+    "operator-linebreak": "off",
+    "implicit-arrow-linebreak": "off"
+  },
 };
