@@ -1,7 +1,6 @@
-import getCaloriesFromMostElf from './01';
+import getCaloriesFromTopElves from './01';
 
-test('can get the calorie ammount from the elf with the most calories', () => {
-  expect(getCaloriesFromMostElf(`1000
+const testInput = `1000
 2000
 3000
 
@@ -14,5 +13,12 @@ test('can get the calorie ammount from the elf with the most calories', () => {
 8000
 9000
 
-10000`)).toBe(24000);
+10000`;
+
+test('can get the calorie ammount from the elf with the most calories', () => {
+  expect(getCaloriesFromTopElves(testInput, 1)).toBe(24000);
+});
+
+test('can get the calorie amount from the three most laiden elves', () => {
+  expect(getCaloriesFromTopElves(testInput, 3)).toBe(45000);
 });
