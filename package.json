@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "ts-node src/2022/index.ts",
     "test": "jest",
     "test:watch": "nodemon -e 'ts' --exec pnpm test",
     "lint": "eslint . --ext .ts",
@@ -24,5 +25,8 @@
     "nodemon": "^3.0.1",
     "ts-jest": "^29.1.1",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.1"
   }
 }
