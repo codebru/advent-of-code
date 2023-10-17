@@ -47,7 +47,45 @@ const selectedShapeScore = (selected: RPS): number => {
   }
 };
 
-const winDrawLoseScore = (round: RPSRound): number => 1;
+const winDrawLoseScore = (round: RPSRound): number => {
+  switch (round.yourPick) {
+    case RPS.rock:
+      switch (round.opponentPick) {
+        case RPS.rock:
+          return 3;
+        case RPS.paper:
+          return 0;
+        case RPS.scissors:
+          return 6;
+        default:
+          throw new Error('Not implemented for this pick');
+      }
+    case RPS.paper:
+      switch (round.opponentPick) {
+        case RPS.rock:
+          return 6;
+        case RPS.paper:
+          return 3;
+        case RPS.scissors:
+          return 0;
+        default:
+          throw new Error('Not implemented for this pick');
+      }
+    case RPS.scissors:
+      switch (round.opponentPick) {
+        case RPS.rock:
+          return 0;
+        case RPS.paper:
+          return 6;
+        case RPS.scissors:
+          return 3;
+        default:
+          throw new Error('Not implemented for this pick');
+      }
+    default:
+      throw new Error('Not implemented for this pick');
+  }
+};
 
 const getScoreForRound = (round: RPSRound): number =>
   selectedShapeScore(round.yourPick) + winDrawLoseScore(round);
