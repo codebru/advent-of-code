@@ -35,25 +35,23 @@ const replaceAllWordNumbers = (inputString: string): string => {
 
 const combineFirstAndLastNumberInLine = (line: String) => {
   const arrayOfNumbers = line
-    .replace('one', '1')
-    .replace('two', '2')
-    .replace('three', '3')
-    .replace('four', '4')
-    .replace('five', '5')
-    .replace('six', '6')
-    .replace('seven', '7')
-    .replace('eight', '8')
-    .replace('nine', '9')
     .split('')
     .filter((value: String) => !Number.isNaN(parseInt(value as string, 10)));
 
   return parseInt(`${arrayOfNumbers.at(0)}${arrayOfNumbers.at(-1)}`, 10);
 };
 
-const getCalibrationValue = (calibrationSheet: String) => calibrationSheet
-  .split('\n')
-  .map(replaceAllWordNumbers)
-  .map(combineFirstAndLastNumberInLine)
-  .reduce((a: number, b: number) => a + b);
+const getCalibrationValue = (
+  calibrationSheet: String,
+  wordsAreValid: boolean = false,
+) => {
+  let arrayOfLines = calibrationSheet.split('\n');
+
+  if (wordsAreValid) arrayOfLines = arrayOfLines.map(replaceAllWordNumbers);
+
+  return arrayOfLines
+    .map(combineFirstAndLastNumberInLine)
+    .reduce((a: number, b: number) => a + b);
+};
 
 export { getCalibrationValue, combineFirstAndLastNumberInLine };

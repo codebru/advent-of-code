@@ -5,3 +5,6 @@ import { getCalibrationValue } from './01';
 
 console.log('Question 1 - Part 1');
 console.log(getCalibrationValue(puzzleOneImput));
+
+console.log('Question 1 - Part 2');
+console.log(getCalibrationValue(puzzleOneImput, true));
