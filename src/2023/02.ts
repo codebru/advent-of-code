@@ -11,24 +11,24 @@ const getId = (line: string): number => parseInt(line.split(' ')[ID_POSITION_IN_
 
 const getCubeNumbers = (line: String, cubeName: string): number[] => {
   const splitLine = line
-  .replaceAll(',', '')
-  .replaceAll(';', '')
-  .split(' ');
+    .replaceAll(',', '')
+    .replaceAll(';', '')
+    .split(' ');
 
   const allForMatch = splitLine.map((entry, index) => {
     if (entry === cubeName) return parseInt(splitLine[index - 1], 10);
     return null;
   })
     .filter((entry) => entry !== null) as number[];
-  
-    return allForMatch;
+
+  return allForMatch;
 };
 
 const getMaxOfCubeNumbers = (
   line: String,
-  cubeName: string
-  ): number => getCubeNumbers(line, cubeName)
-  .reduce((previous, current) => current > previous ? current : previous)
+  cubeName: string,
+): number => getCubeNumbers(line, cubeName)
+  .reduce((previous, current) => (current > previous ? current : previous));
 
 const parseMaxForEachCube = (input: string) : ExampleRound[] => input
   .split('\n')
@@ -41,4 +41,4 @@ const sumPossibleGamesOfCubes = (input: string) => 1;
 
 export {
   getCubeNumbers, getId, parseMaxForEachCube, sumPossibleGamesOfCubes,
-};
+}; 
