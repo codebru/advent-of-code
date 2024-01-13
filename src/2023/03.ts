@@ -1,15 +1,49 @@
-const addAllPartNumbers = (engineSchematic: string): number => 1;
-
 const isNumber = (char: string): boolean => !Number.isNaN(Number(char));
 
 type Location = { row: number, collumn: number };
 type Length = number;
-type Part = { location: Location, length: Length };
+type Part = {
+  location: Location,
+  length: Length,
+  number: number,
+};
 
 const parseEngineSchematic = (engineSchematic: string): string[][] => engineSchematic.split('\n')
   .map((row) => row.split(''));
 
-const isSymbol = (char: string): boolean => char === '*' || char === '#' || char === '$' || char === '+';
+const isSymbol = (char: string): boolean => char === '!'
+|| char === '@'
+|| char === '£'
+|| char === '€'
+|| char === '$'
+|| char === '#'
+|| char === '%'
+|| char === '^'
+|| char === '&'
+|| char === '*'
+|| char === '('
+|| char === ')'
+|| char === '-'
+|| char === '_'
+|| char === '+'
+|| char === '='
+|| char === '{'
+|| char === '['
+|| char === ']'
+|| char === '}'
+|| char === ':'
+|| char === ';'
+|| char === '"'
+|| char === "'"
+|| char === '|'
+|| char === '\\'
+|| char === '<'
+|| char === ','
+|| char === '>'
+// || char === '.' not this one
+|| char === '?'
+|| char === '/'
+|| char === '~';
 
 const isSymbolAdjacent = (engineSchematic: string, part: Part): boolean => {
   const parsedEngineSchematic = parseEngineSchematic(engineSchematic);
@@ -76,6 +110,7 @@ const getPartLocationsAndLengths = (engineSchematic: string): Part[] => {
                 collumn: collumnIndex,
               },
               length: numberLength,
+              number: Number(row.slice(collumnIndex, collumnIndex + numberLength).join('')),
             });
           }
         }
@@ -83,6 +118,16 @@ const getPartLocationsAndLengths = (engineSchematic: string): Part[] => {
     });
   return parts;
 };
+
+const addAllPartNumbers = (
+  engineSchematic: string,
+): number => getPartLocationsAndLengths(engineSchematic)
+  .map((part) => {
+    if (isSymbolAdjacent(engineSchematic, part)) {
+      return part.number;
+    }
+    return 0;
+  }).reduce((a, b) => a + b);
 
 export {
   addAllPartNumbers,
