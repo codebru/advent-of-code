@@ -47,11 +47,20 @@ const possibleRound = (round: Round): boolean => round.red <= CUBES_IN_ROUND_RED
 const returnIdIfPossibleRound = (round: Round): number | null =>
   (possibleRound(round) ? round.gameId : null);
 
+const getPowerForRound = (round: Round) => round.red * round.green * round.blue;
+
 const sumPossibleGamesOfCubes = (input: string) => parseMaxForEachCube(input)
   .map(returnIdIfPossibleRound)
   .filter((gameId) => gameId !== null)
   .reduce((previous, current) => (previous as number) + (current as number));
 
+const sumOfGamePowers = (input: string) => parseMaxForEachCube(input)
+  .map(getPowerForRound)
+  .reduce((a, b) => a + b);
 export {
-  getCubeNumbers, getId, parseMaxForEachCube, sumPossibleGamesOfCubes,
+  getCubeNumbers,
+  getId,
+  parseMaxForEachCube,
+  sumPossibleGamesOfCubes,
+  sumOfGamePowers,
 };

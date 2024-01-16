@@ -1,5 +1,9 @@
 import {
-  getCubeNumbers, getId, parseMaxForEachCube, sumPossibleGamesOfCubes,
+  getCubeNumbers,
+  getId,
+  parseMaxForEachCube,
+  sumPossibleGamesOfCubes,
+  sumOfGamePowers,
 } from './02';
 
 const TEST_INPUT = `Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
@@ -7,7 +11,8 @@ Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
 Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
 Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
 Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green`;
-const CORRECT_ANSWER = 8;
+const CORRECT_ANSWER_PART_1 = 8;
+const CORRECT_ANSWER_PART_2 = 2286;
 
 test('GIVEN a line THEN get the id', () => {
   expect(getId('Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red')).toBe(3);
@@ -33,5 +38,9 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
 });
 
 test('GIVEN a valid game input THEN get the answer', () => {
-  expect(sumPossibleGamesOfCubes(TEST_INPUT)).toBe(CORRECT_ANSWER);
+  expect(sumPossibleGamesOfCubes(TEST_INPUT)).toBe(CORRECT_ANSWER_PART_1);
+});
+
+test('GIVEN a set of games THEN sum the power of the cubes from each game', () => {
+  expect(sumOfGamePowers(TEST_INPUT)).toBe(CORRECT_ANSWER_PART_2);
 });
